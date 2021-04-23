@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+require('dotenv').config();
 
 export default function FetchData() {
 
   const [makes, setMakes] = useState([])
   const [brand, setBrand] = useState([])
 
-
-  // const url = `https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/${brand}/vehicleType/car?format=json`
+  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/${brand}/vehicleType/car?format=json`)
+    axios.get(`${url}${brand}/vehicleType/car?format=json`)
       .then(res => {
         console.log(res.data);
         setMakes(res.data['Results'])
@@ -18,7 +18,7 @@ export default function FetchData() {
       .catch(err => {
         console.log('ERROR: ',err)
       });
-  }, [brand])
+  }, [url, brand])
 
   if(makes) {
     return(
@@ -48,8 +48,5 @@ export default function FetchData() {
       </div>
     )
   }
-
-
-  
 }
 
