@@ -23,8 +23,8 @@ export default function FetchData() {
   if(makes) {
     return(
       <div>
-        <input type="text" value={brand} onChange={event => setBrand(event.target.value)}></input>
-        <div className="stock-container">
+        <input className = "user-input" type="text" placeholder="Search vehicle makes" value={brand} onChange={event => setBrand(event.target.value)}></input>
+        <div className="container">
           {makes.map((data, key) => {
             return (
               <div key={key}>

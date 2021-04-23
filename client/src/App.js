@@ -1,11 +1,13 @@
 import React from 'react';
 import FetchData from './components/FetchData'
+import './App.css'
 
 
 function App() {
 
   return (
-    <div>
+    <div className="form-outline">
+      <h3 className="form-title">Makes Dashboard</h3>
       <FetchData />
     </div>
   );
