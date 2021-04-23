@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cards from '../components/Cards';
 require("dotenv").config();
+
 
 
 export default function FetchData() {
@@ -35,7 +37,7 @@ export default function FetchData() {
           value={brand}
           onChange={(event) => setBrand(event.target.value)}>
         </input>
-  
+
         <div className="container">
           {makes.map((data, key) => {
             return (
@@ -43,6 +45,7 @@ export default function FetchData() {
                 {data.Model_Name +
                   " , " +
                   data.Model_ID}
+                <Cards card={data.Model_Name}/>
               </div>
             );
           })}
