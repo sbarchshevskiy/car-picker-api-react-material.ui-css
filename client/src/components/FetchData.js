@@ -1,52 +1,55 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-require('dotenv').config();
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+require("dotenv").config();
+
 
 export default function FetchData() {
-
-  const [makes, setMakes] = useState([])
-  const [brand, setBrand] = useState([])
+  const [makes, setMakes] = useState([]);
+  const [brand, setBrand] = useState([]);
 
   const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    axios.get(`${url}${brand}/vehicleType/car?format=json`)
-      .then(res => {
+    axios
+      .get(`${url}${brand}/vehicleType/car?format=json`)
+      .then((res) => {
         console.log(res.data);
-        setMakes(res.data['Results'])
+        setMakes(res.data["Results"]);
       })
-      .catch(err => {
-        console.log('ERROR: ',err)
+      .catch((err) => {
+        console.log("ERROR: ", err);
       });
-  }, [url, brand])
+  }, [url, brand]);
 
-  if(makes) {
-    return(
+  if (makes) {
+    return (
       <div>
-        <input className = "user-input" type="text" placeholder="Search vehicle makes" value={brand} onChange={event => setBrand(event.target.value)}></input>
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+        </style>
+        <input
+          className="user-input"
+          type="text"
+          placeholder="Search vehicle makes"
+          value={brand}
+          onChange={(event) => setBrand(event.target.value)}>
+        </input>
+  
         <div className="container">
           {makes.map((data, key) => {
             return (
               <div key={key}>
-                {data.Make_ID +
+                {data.Model_Name +
                   " , " +
-                  data.Make_Name +
-                  " ," +
-                  data.Model_Name +
-                  ", " +
-                  data.VehicleTypeName}
+                  data.Model_ID}
               </div>
             );
           })}
         </div>
       </div>
-    )
+    );
   } else {
-    return (
-      <div>
-        loading...
-      </div>
-    )
+    return <div>loading...</div>;
   }
 }
-

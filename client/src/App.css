@@ -14,11 +14,14 @@ body{
 .form-title {
   display: flex;
   justify-content: center;
-  min-height: 6vh;
+  min-height: 8vh;
   padding: 0%;
   margin: 0%;
+  font-family: Comfortaa;
+  font-size: 20px;
 }
 
 .user-input {
   width: 300px;
+  border-radius: 15px;
 }
