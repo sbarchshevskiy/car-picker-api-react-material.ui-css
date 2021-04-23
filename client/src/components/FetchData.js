@@ -3,8 +3,6 @@ import axios from "axios";
 import Cards from '../components/Cards';
 require("dotenv").config();
 
-
-
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
