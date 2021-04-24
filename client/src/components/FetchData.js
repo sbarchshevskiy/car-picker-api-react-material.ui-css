@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cards from '../components/Cards';
 require("dotenv").config();
 
 export default function FetchData() {
@@ -24,27 +23,18 @@ export default function FetchData() {
   if (makes) {
     return (
       <div>
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
-        </style>
         <input
           className="user-input"
           type="text"
           placeholder="Search vehicle makes"
           value={brand}
-          onChange={(event) => setBrand(event.target.value)}>
+          onChange={(event) => 
+            setBrand(event.target.value)}>
         </input>
-
         <div className="container">
           {makes.map((data, key) => {
             return (
-              <div key={key}>
-                {data.Model_Name +
-                  " , " +
-                  data.Model_ID}
-                <Cards card={data.Model_Name}/>
-              </div>
+              <div key={key}>{data.Model_Name + " , " + data.Model_ID}</div>
             );
           })}
         </div>

@@ -1,15 +1,19 @@
-import React from 'react';
-import FetchData from './components/FetchData'
-import './App.css'
-
+import React from "react";
+import FetchData from "./components/FetchData";
+import "./App.css";
+import { Container } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 function App() {
-
   return (
-    <div className="form-outline">
-      <h3 className="form-title">Makes Dashboard</h3>
-      <FetchData />
-    </div>
+    <Container>
+      <Grid>
+        <div className="form-outline">
+          <h3 className="form-title">Makes Dashboard</h3>
+          <FetchData />
+        </div>
+      </Grid>
+    </Container>
   );
 }
 
