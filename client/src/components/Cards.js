@@ -4,17 +4,39 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import { IconButton, Typography } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 300,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(1.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
+
 
 export default function Cards({ card }) {
+
+  const classes = useStyles();
+
   return (
     <div>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
-      </style>
       <Card elevation={3}>
-        <CardHeader
-          action={
+        <CardContent>
+          <Typography variant="h5" component="h2">
+            MODEL NAME
             <IconButton
               onClick={() => {
                 console.log("delete", card.title);
@@ -22,15 +44,20 @@ export default function Cards({ card }) {
             >
               <Close />
             </IconButton>
-          }
-          Model_Name={card.Model_Name}
-          Model_ID={card.Model_ID}
-        />
-        <CardContent>
-          <Typography variant="body2" color="TextSecondary">
-            {card.Model_Name}
+          </Typography>
+
+          <Typography className={classes.pos} color="textSecondary">
+            Model list
+          </Typography>
+          <Typography variant="body2" component="p">
+            Model
+            <br />
+            {'Model ID'}
           </Typography>
         </CardContent>
+        <CardActions>
+          <Button size="small">See complete list</Button>
+        </CardActions>
       </Card>
     </div>
   );
