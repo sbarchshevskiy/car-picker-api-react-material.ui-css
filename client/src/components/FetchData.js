@@ -36,13 +36,13 @@ export default function FetchData() {
         </body>
         <div className="container">
           {makes.map((data, key) => {
-            return (
-              <div key={key}>
+          return (
+              // <div key={key}>
+              <div>
                 <Cards>
-                {/*{data.Model_Name + " , " + data.Model_ID + " , " + data.Make_Name}*/}
-                {/*  model={data.Model_Name}*/}
-                {/*  modelID={data.Model_ID}*/}
-                {/*  makeName={data.Make_Name}*/}
+                  {data.Model_Name}
+                  {data.Model_ID}
+                  {data.Make_Name}
                 </Cards>
               </div>
             );

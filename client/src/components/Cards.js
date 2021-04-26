@@ -29,7 +29,21 @@ const useStyles = makeStyles({
 
 export default function Cards(props) {
 
-  console.log('log props',props)
+  // const model = props.children
+  // console.log(model)
+  // const modelName = model[0]
+  // console.log('modelName',modelName)
+  //
+  // props.children = {
+  //   0: "modelName",
+  //   1: "id",
+  //   2: "make"
+  // }
+
+  console.log(props)
+
+
+  console.log('log props', props)
 
   const classes = useStyles();
   return (
@@ -48,7 +62,7 @@ export default function Cards(props) {
           </Typography>
             title
           <Typography className={classes.pos} color="textSecondary">
-            {props.children}
+            {/*{props}*/}
           </Typography>
           <Typography variant="body2" component="p">
             Model
