@@ -8,17 +8,18 @@ import Cards from "./components/Cards";
 
 function App() {
   return (
-    <Cards/>
+    <Container>
+      <Cards/>
 
-    // <Container>
-    //   <Styling/>
-    //   <Grid>
-    //     <div className="form-outline">
-    //       <h3 className="form-title">Makes Dashboard</h3>
-    //       <FetchData />
-    //     </div>
-    //   </Grid>
-    // </Container>
+      <Grid>
+        <Styling/>
+        <div className="form-outline">
+          <h3 className="form-title">Makes Dashboard</h3>
+          <FetchData>
+          </FetchData>
+        </div>
+      </Grid>
+    </Container>
   );
 }
 

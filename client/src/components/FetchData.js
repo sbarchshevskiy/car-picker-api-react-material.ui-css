@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cards from "./Cards";
 require("dotenv").config();
 
 export default function FetchData() {
@@ -23,22 +24,32 @@ export default function FetchData() {
   if (makes) {
     return (
       <div>
+        <body>
         <input
           className="user-input"
           type="text"
           placeholder="Search vehicle makes"
           value={brand}
-          onChange={(event) => 
-            setBrand(event.target.value)}>
+          onChange={(event) =>
+          setBrand(event.target.value)}>
         </input>
+        </body>
         <div className="container">
           {makes.map((data, key) => {
             return (
-              <div key={key}>{data.Model_Name + " , " + data.Model_ID}</div>
+              <div key={key}>
+                <Cards>
+                {/*{data.Model_Name + " , " + data.Model_ID + " , " + data.Make_Name}*/}
+                {/*  model={data.Model_Name}*/}
+                {/*  modelID={data.Model_ID}*/}
+                {/*  makeName={data.Make_Name}*/}
+                </Cards>
+              </div>
             );
           })}
         </div>
       </div>
+
     );
   } else {
     return <div>loading...</div>;

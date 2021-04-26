@@ -7,6 +7,7 @@ import { Close } from "@material-ui/icons";
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import FetchData from "./FetchData";
 
 
 const useStyles = makeStyles({
@@ -26,33 +27,32 @@ const useStyles = makeStyles({
   },
 });
 
+export default function Cards(props) {
 
-export default function Cards({ card }) {
+  console.log('log props',props)
 
   const classes = useStyles();
-
   return (
     <div>
       <Card elevation={3}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            MODEL NAME
+            Brand
             <IconButton
               onClick={() => {
-                console.log("delete", card.title);
+                console.log("close");
               }}
             >
               <Close />
             </IconButton>
           </Typography>
-
+            title
           <Typography className={classes.pos} color="textSecondary">
-            Model list
+            {props.children}
           </Typography>
           <Typography variant="body2" component="p">
             Model
             <br />
-            {'Model ID'}
           </Typography>
         </CardContent>
         <CardActions>
