@@ -7,6 +7,8 @@ export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
 
+  console.log(makes)
+
   const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -22,6 +24,8 @@ export default function FetchData() {
   }, [url, brand]);
 
   if (makes) {
+    // const result = makes.filter((res) => res.Make_Name.toLowerCase() === brand);
+    // console.log('result fil',result)
     return (
       <div>
         <body>
@@ -35,11 +39,12 @@ export default function FetchData() {
         </input>
         </body>
         <div className="container">
-          {makes.map((data, key) => {
+          {makes.filter((res) => res.Make_Name.toLowerCase() === brand).map((data, key) => {
           return (
               // <div key={key}>
               <div>
-                <Cards>
+                <Cards model={data.Model_Name} id={data.Model_ID}
+                       make={data.Make_Name}>
                   {data.Model_Name}
                   {data.Model_ID}
                   {data.Make_Name}
