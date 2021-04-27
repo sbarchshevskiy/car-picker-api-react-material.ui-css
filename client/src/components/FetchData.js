@@ -6,8 +6,7 @@ require("dotenv").config();
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
-
-  console.log(makes);
+  const [searchMatch, setSearchMatch] = useState([]);
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -23,6 +22,15 @@ export default function FetchData() {
       });
   }, [url, brand]);
 
+
+  const autoComplete = (input) => {
+    let matches = makes.filter((make) => {
+      const regex = new RegExp(`${input}, "gi"`);
+      return make.Make_Name.match(regex);
+    });
+    setSearchMatch(matches);
+  }
+
   if (makes) {
     return (
       <div>
@@ -34,23 +42,26 @@ export default function FetchData() {
             value={brand}
             onChange={(event) => setBrand(event.target.value)}
           />
+          {searchMatch && searchMatch.map((data, key) => (
+            <div>
+              {data.Model_Name}
+            </div>
+          ))}
         </body>
         <div className="container">
           {makes
             .filter((res) => res.Make_Name.toLowerCase() === brand)
             .map((data, key) => {
               return (
-                // <div key={key}>
                 <div>
-                  <Cards
-                    model={data.Model_Name}
-                    id={data.Model_ID}
-                    make={data.Make_Name}
-                  />
+                    <Cards
+                      model={data.Model_Name}
+                      id={data.Model_ID}
+                      make={data.Make_Name}
+                    />
                 </div>
               );
             })}
-
         </div>
       </div>
     );
