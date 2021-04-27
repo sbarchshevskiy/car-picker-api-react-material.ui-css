@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { IconButton, Typography } from "@material-ui/core";
@@ -38,11 +38,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Cards({ model, id, make }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
+
+
+  const modelArray = (data) => {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+      result.push(model)
+    }
+    console.log(result)
+    return result;
+  }
+
+
+  const [modelList, setModelList] = useState([])
+
+
 
   const handleClose = () => {
     setOpen(false);
@@ -65,10 +81,10 @@ export default function Cards({ model, id, make }) {
           </Typography>
 
           <Typography className={classes.pos} color="textSecondary">
-            model: {model}
+            {/*model: {model}*/}
           </Typography>
           <Typography variant="body2" component="p">
-            id: {id}
+            {/*id: {id}*/}
             <br />
           </Typography>
         </CardContent>
@@ -93,8 +109,10 @@ export default function Cards({ model, id, make }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">{model}</h2>
-            <p id="transition-modal-description">{id}</p>
+            <h2 id="transition-modal-title">{make}</h2>
+            <p id="transition-modal-description">Model: {modelArray(model[0])}</p>
+            <p id="transition-modal-description">Model id: {id}</p>
+
           </div>
         </Fade>
       </Modal>

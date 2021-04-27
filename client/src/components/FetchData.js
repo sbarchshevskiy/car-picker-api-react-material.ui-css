@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./Cards";
+import Card from "@material-ui/core/Card";
+
+
 require("dotenv").config();
 
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
-  const [searchMatch, setSearchMatch] = useState([]);
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -22,14 +24,20 @@ export default function FetchData() {
       });
   }, [url, brand]);
 
+  console.log('brand', brand)
 
-  const autoComplete = (input) => {
-    let matches = makes.filter((make) => {
-      const regex = new RegExp(`${input}, "gi"`);
-      return make.Make_Name.match(regex);
-    });
-    setSearchMatch(matches);
-  }
+  // const [searchMatch, setSearchMatch] = useState([]);
+  // const autoComplete = (input) => {
+  //   let matches = makes.filter((make) => {
+  //     //regex gi modifier is a case insensitive search
+  //     const regex = new RegExp(`${input}, "gi"`);
+  //     console.log('matches:', make.Make_Name)
+  //     return make.Make_Name.match(regex);
+  //   });
+  //   setSearchMatch(matches);
+  // }
+  // autoComplete(setBrand(event.target.value))
+
 
   if (makes) {
     return (
@@ -40,13 +48,16 @@ export default function FetchData() {
             type="text"
             placeholder="Search vehicle makes"
             value={brand}
-            onChange={(event) => setBrand(event.target.value)}
+            onChange={(event) => {
+              setBrand(event.target.value)
+            }}
           />
-          {searchMatch && searchMatch.map((data, key) => (
-            <div>
-              {data.Model_Name}
-            </div>
-          ))}
+          {/*{searchMatch && searchMatch.map((data, key) => (*/}
+          {/*  <div key={key} style={{marginTop: "5px"}}>*/}
+          {/*    <Card style={{width: "50%"}} out={data.Model_Name}/>*/}
+          {/*    {data.Model_Name}*/}
+          {/*  </div>*/}
+          {/*))}*/}
         </body>
         <div className="container">
           {makes
