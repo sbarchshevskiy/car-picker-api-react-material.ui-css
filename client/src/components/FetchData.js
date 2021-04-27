@@ -25,6 +25,7 @@ export default function FetchData() {
       });
   }, [url, brand]);
 
+
   if (makes) {
     return (
       <div>
@@ -49,12 +50,22 @@ export default function FetchData() {
                     id={data.Model_ID}
                     make={data.Make_Name}
                   ></Cards>
-                  <TransitionsModal>
-                    {data.Model_Name + "," + data.Model_ID}
-                  </TransitionsModal>
                 </div>
               );
             })}
+            <div>
+              {
+                makes.map((nonFilteredData, nfkey) => {
+                  return (
+                    <div>
+                      <TransitionsModal
+                        model={nonFilteredData.Model_Name}>
+                      </TransitionsModal>
+                    </div>
+                  )
+                })
+              }
+            </div>
         </div>
       </div>
     );

@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TransitionsModal({ model, id }) {
+
+  console.log('props:', model, id)
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
