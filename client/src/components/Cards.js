@@ -80,27 +80,26 @@ export default function Cards({ model, id, make }) {
           </Button>
         </CardActions>
       </Card>
-      {/*<Modal*/}
-      {/*  aria-labelledby="transition-modal-title"*/}
-      {/*  aria-describedby="transition-modal-description"*/}
-      {/*  className={classes.modal}*/}
-      {/*  open={open}*/}
-      {/*  onClose={handleClose}*/}
-      {/*  closeAfterTransition*/}
-      {/*  BackdropComponent={Backdrop}*/}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
 
-      {/*  BackdropProps={{*/}
-      {/*    timeout: 500,*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  <Fade in={open}>*/}
-      {/*    <div className={classes.paper}>*/}
-      {/*      <h2 id="transition-modal-title">{model}</h2>*/}
-
-      {/*      <p id="transition-modal-description">{id}</p>*/}
-      {/*    </div>*/}
-      {/*  </Fade>*/}
-      {/*</Modal>*/}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">{model}</h2>
+            <p id="transition-modal-description">{id}</p>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }

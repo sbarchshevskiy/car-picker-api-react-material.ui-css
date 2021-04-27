@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./Cards";
-import TransitionsModal from "./TransitionsModal";
-
 require("dotenv").config();
 
 export default function FetchData() {
@@ -25,7 +23,6 @@ export default function FetchData() {
       });
   }, [url, brand]);
 
-
   if (makes) {
     return (
       <div>
@@ -36,7 +33,7 @@ export default function FetchData() {
             placeholder="Search vehicle makes"
             value={brand}
             onChange={(event) => setBrand(event.target.value)}
-          ></input>
+          />
         </body>
         <div className="container">
           {makes
@@ -49,23 +46,11 @@ export default function FetchData() {
                     model={data.Model_Name}
                     id={data.Model_ID}
                     make={data.Make_Name}
-                  ></Cards>
+                  />
                 </div>
               );
             })}
-            <div>
-              {
-                makes.map((nonFilteredData, nfkey) => {
-                  return (
-                    <div>
-                      <TransitionsModal
-                        model={nonFilteredData.Model_Name}>
-                      </TransitionsModal>
-                    </div>
-                  )
-                })
-              }
-            </div>
+
         </div>
       </div>
     );
