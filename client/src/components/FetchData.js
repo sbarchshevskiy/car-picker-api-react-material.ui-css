@@ -9,23 +9,33 @@ require("dotenv").config();
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
+  const [model, setModels] = useState([]);
 
   const url = process.env.REACT_APP_API_URL;
 
+
   useEffect(() => {
+    //alternative can be using Promise.all
     axios
       .get(`${url}${brand}/vehicleType/car?format=json`)
       .then((res) => {
-        console.log(res.data);
-        setMakes(res.data["Results"]);
+        //loads car maker
+        console.log('Maker: ',res.data["Results"][0].Make_Name);
+        setMakes(res.data["Results"][0].Make_Name)
+       //loads models
+      .then((res) => {
+        console.log('Model ',res.data["Results"])
+        setModels(res.data["Results"])
+      })
       })
       .catch((err) => {
         console.log("ERROR: ", err);
       });
   }, [url, brand]);
 
-  console.log('brand', brand)
+  console.log('model call', model)
 
+  // autocomplete function
   // const [searchMatch, setSearchMatch] = useState([]);
   // const autoComplete = (input) => {
   //   let matches = makes.filter((make) => {
@@ -37,7 +47,6 @@ export default function FetchData() {
   //   setSearchMatch(matches);
   // }
   // autoComplete(setBrand(event.target.value))
-
 
   if (makes) {
     return (
@@ -59,9 +68,10 @@ export default function FetchData() {
           {/*  </div>*/}
           {/*))}*/}
         </body>
+
         <div className="container">
-          {makes
-            .filter((res) => res.Make_Name.toLowerCase() === brand)
+          {model
+            .filter((res) => res.Model_Name.toLowerCase())
             .map((data, key) => {
               return (
                 <div>
@@ -74,6 +84,15 @@ export default function FetchData() {
               );
             })}
         </div>
+
+        <div>
+          <Cards
+          make={makes}
+          />
+        </div>
+
+
+
       </div>
     );
   } else {
