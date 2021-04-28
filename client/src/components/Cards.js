@@ -77,73 +77,78 @@ export default function Cards({ model, id, make }) {
   console.log('model call',models)
 
   const classes = useStyles();
-  return (
-    <div>
-      <Card elevation={3}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-            {make}
-            <IconButton
-              onClick={() => {
-                console.log("close");
-              }}
-            >
-              <Close />
-            </IconButton>
-          </Typography>
+  if (models) {
+    return (
+      <div>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {make}
+              <IconButton
+                onClick={() => {
+                  console.log("close");
+                }}
+              >
+                <Close />
+              </IconButton>
+            </Typography>
 
-          <Typography className={classes.pos} color="textSecondary">
-            model: {model}
-          </Typography>
-          <Typography variant="body2" component="p">
-            id: {id}
-            <br />
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" onClick={handleOpen}>
-            See complete list
-          </Button>
-        </CardActions>
-      </Card>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
+            <Typography className={classes.pos} color="textSecondary">
+              model: {model}
+            </Typography>
+            <Typography variant="body2" component="p">
+              id: {id}
+              <br />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" onClick={handleOpen}>
+              See complete list
+            </Button>
+          </CardActions>
+        </Card>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <div className={classes.paper}>
 
-            <div className="container">
-              {models
-                .filter((res) => res.Make_Name.toLowerCase())
-                .map((data, key) => {
-                  return (
-                    <div>
-                        {data.Model_Name} -
-                        {data.Model_ID} -
-                        {data.Make_Name}
-                    </div>
-                  );
-                })}
+              <div className="container">
+                {models
+                  .filter((res) => res.Make_Name.toLowerCase())
+                  .map((data, key) => {
+                      return (
+                        <div>
+                          {data.Model_Name} -
+                          {data.Model_ID} -
+                          {data.Make_Name}
+                        </div>
+                      );
+                  })}
+              </div>
+
+              {/*<h2 id="transition-modal-title">{make}</h2>*/}
+              {/*<p id="transition-modal-description">Model: {model}</p>*/}
+              {/*<p id="transition-modal-description">Model id: {id}</p>*/}
+
             </div>
+          </Fade>
+        </Modal>
+      </div>
+    );
 
+  } else {
+    return <div>loading...</div>
+  }
 
-
-            {/*<h2 id="transition-modal-title">{make}</h2>*/}
-            {/*<p id="transition-modal-description">Model: {model}</p>*/}
-            {/*<p id="transition-modal-description">Model id: {id}</p>*/}
-
-          </div>
-        </Fade>
-      </Modal>
-    </div>
-  );
 }
+

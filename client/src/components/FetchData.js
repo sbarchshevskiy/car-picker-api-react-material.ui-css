@@ -29,6 +29,7 @@ export default function FetchData() {
 
   // autocomplete function
   // const [searchMatch, setSearchMatch] = useState([]);
+  //
   // const autoComplete = (input) => {
   //   let matches = makes.filter((make) => {
   //     //regex gi modifier is a case insensitive search
@@ -61,8 +62,6 @@ export default function FetchData() {
           {/*  </div>*/}
           {/*))}*/}
         </body>
-
-
 
 
         <div className="container">
