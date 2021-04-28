@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { IconButton, Typography } from "@material-ui/core";
@@ -9,6 +9,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import axios from "axios";
+
+require("dotenv").config();
+const url = process.env.REACT_APP_API_URL;
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,16 +47,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Cards({ model, id, make }) {
 
-  const [open, setOpen] = React.useState(false);
+  // Modal state off by default
+  const [open, setOpen] = useState(false);
+  const [models, setModel] = useState([])
 
+
+  // Modal popup on open and close
   const handleOpen = () => {
     setOpen(true);
   };
-
-
   const handleClose = () => {
     setOpen(false);
   };
+
+
+  useEffect(() => {
+    axios
+      .get(`${url}${make}/vehicleType/car?format=json`)
+      .then((res) => {
+        //loads car model
+        console.log('Model: ',res.data["Results"][0].Model_Name);
+        setModel(res.data["Results"])
+      })
+      .catch((err) => {
+        console.log("ERROR: ", err);
+      });
+  }, [url]);
+
+  console.log('model call',models)
 
   const classes = useStyles();
   return (
@@ -90,7 +114,6 @@ export default function Cards({ model, id, make }) {
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
-
         BackdropProps={{
           timeout: 500,
         }}
@@ -98,9 +121,25 @@ export default function Cards({ model, id, make }) {
         <Fade in={open}>
           <div className={classes.paper}>
 
-            <h2 id="transition-modal-title">{make}</h2>
-            <p id="transition-modal-description">Model: {model}</p>
-            <p id="transition-modal-description">Model id: {id}</p>
+            <div className="container">
+              {models
+                .filter((res) => res.Make_Name.toLowerCase())
+                .map((data, key) => {
+                  return (
+                    <div>
+                        {data.Model_Name} -
+                        {data.Model_ID} -
+                        {data.Make_Name}
+                    </div>
+                  );
+                })}
+            </div>
+
+
+
+            {/*<h2 id="transition-modal-title">{make}</h2>*/}
+            {/*<p id="transition-modal-description">Model: {model}</p>*/}
+            {/*<p id="transition-modal-description">Model id: {id}</p>*/}
 
           </div>
         </Fade>

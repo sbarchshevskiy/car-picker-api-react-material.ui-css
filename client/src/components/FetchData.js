@@ -5,12 +5,13 @@ import Card from "@material-ui/core/Card";
 
 
 require("dotenv").config();
+const url = process.env.REACT_APP_API_URL;
+
 
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
 
-  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     //alternative can be using Promise.all
@@ -61,6 +62,9 @@ export default function FetchData() {
           {/*))}*/}
         </body>
 
+
+
+
         <div className="container">
           {makes
             .filter((res) => res.Make_Name.toLowerCase() === brand)
@@ -76,6 +80,10 @@ export default function FetchData() {
               );
             })}
         </div>
+
+        {/*<div>*/}
+        {/*  <Cards make={makes}/>*/}
+        {/*</div>*/}
       </div>
     );
   } else {
