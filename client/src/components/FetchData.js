@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./Cards";
-import Card from "@material-ui/core/Card";
+import { CircularProgress } from "@material-ui/core";
+import Backdrop from "@material-ui/core/Backdrop";
+import "./Cards.css"
 
 
 require("dotenv").config();
@@ -11,6 +13,7 @@ const url = process.env.REACT_APP_API_URL;
 export default function FetchData() {
   const [makes, setMakes] = useState([]);
   const [brand, setBrand] = useState([]);
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -21,6 +24,7 @@ export default function FetchData() {
         //loads car maker
         console.log('Maker: ',res.data["Results"][0].Make_Name);
         setMakes(res.data["Results"])
+        setLoading(true)
       })
       .catch((err) => {
         console.log("ERROR: ", err);
@@ -65,18 +69,19 @@ export default function FetchData() {
 
 
         <div className="container">
+
           {makes
             .filter((res) => res.Make_Name.toLowerCase() === brand)
             .map((data, key) => {
-              return (
-                <div>
+                return (
+                  <div>
                     <Cards
                       model={data.Model_Name}
                       id={data.Model_ID}
                       make={data.Make_Name}
                     />
-                </div>
-              );
+                  </div>
+                );
             })}
         </div>
 
@@ -86,6 +91,10 @@ export default function FetchData() {
       </div>
     );
   } else {
-    return <div>loading...</div>;
+    return (
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80vh"}}>
+        <CircularProgress color="inherit" />
+      </div>
+      )
   }
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { IconButton, Typography } from "@material-ui/core";
+import {CircularProgress, IconButton, Typography} from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
@@ -10,7 +10,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import axios from "axios";
-
+import "./Cards.css"
 require("dotenv").config();
 const url = process.env.REACT_APP_API_URL;
 
@@ -40,7 +40,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     borderRadius: 15,
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(1, 0.6, 1),
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
   },
 }));
 
@@ -49,7 +52,8 @@ export default function Cards({ model, id, make }) {
 
   // Modal state off by default
   const [open, setOpen] = useState(false);
-  const [models, setModel] = useState([])
+  const [models, setModel] = useState([]);
+  const [loading, setLoading] = useState(false)
 
 
   // Modal popup on open and close
@@ -68,13 +72,14 @@ export default function Cards({ model, id, make }) {
         //loads car model
         console.log('Model: ',res.data["Results"][0].Model_Name);
         setModel(res.data["Results"])
+        setLoading(true)
       })
+
       .catch((err) => {
         console.log("ERROR: ", err);
       });
   }, [url]);
 
-  console.log('model call',models)
 
   const classes = useStyles();
   if (models) {
@@ -115,40 +120,47 @@ export default function Cards({ model, id, make }) {
           onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}
+          scrollable={true}
           BackdropProps={{
             timeout: 500,
           }}
         >
           <Fade in={open}>
-            <div className={classes.paper}>
+              <div className={classes.paper}>
+                <div className="modal-body">
+                  {models
+                    .filter((res) => res.Make_Name.toLowerCase())
+                    .map((data, key) => {
 
-              <div className="container">
-                {models
-                  .filter((res) => res.Make_Name.toLowerCase())
-                  .map((data, key) => {
-                      return (
-                        <div>
-                          {data.Model_Name} -
-                          {data.Model_ID} -
-                          {data.Make_Name}
-                        </div>
-                      );
-                  })}
+                        return (
+                          <div>
+                            <h2 id="transition-modal-title">
+                              {data.Model_Name}
+                            </h2>
+                            <p id="transition-modal-description">
+                              Model id: {data.Model_ID}
+                   
+                            </p>
+                          </div>
+                        )
+
+                    })}
+                </div>
               </div>
-
-              {/*<h2 id="transition-modal-title">{make}</h2>*/}
-              {/*<p id="transition-modal-description">Model: {model}</p>*/}
-              {/*<p id="transition-modal-description">Model id: {id}</p>*/}
-
-            </div>
           </Fade>
+
         </Modal>
       </div>
     );
 
   } else {
-    return <div>loading...</div>
+    return (
+      <div>
+        <Backdrop className={classes.backdrop} open>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    )
   }
-
 }
 
