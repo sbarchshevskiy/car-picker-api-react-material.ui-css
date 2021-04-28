@@ -41,8 +41,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Cards({ model, id, make }) {
 
-  // const [model, setModelList] = useState([])
-
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
