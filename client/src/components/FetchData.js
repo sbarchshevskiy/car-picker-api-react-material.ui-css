@@ -35,7 +35,7 @@ export default function FetchData() {
           />
         </body>
 
-        <div className="container">
+        <div>
           {makes
             .filter((res) => res.Make_Name.toLowerCase() === brand)
             .map((data, key) => {

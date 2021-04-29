@@ -10,6 +10,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import axios from "axios";
+import './Cards.css'
 require("dotenv").config();
 
 const url = process.env.REACT_APP_API_URL;
