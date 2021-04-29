@@ -31,9 +31,9 @@ This app should allow user to lookup any automobile, and see history of recalls,
 
 ####Screen captures as of APR 28, 2021
 
-![Screenshot](/screenCaptures/p1.png)
-![Screenshot](/screenCaptures/p2.png)
-![Screenshot](/screenCaptures/p3.png)
+![Screenshot](/client/screenCaptures/p1.png)
+![Screenshot](/client/screenCaptures/p2.png)
+![Screenshot](/client/screenCaptures/p3.png)
 
 
 
