@@ -1,15 +1,27 @@
 #Car Info from NHTSA
 
-###Description:
+#Description:
 
 The National Highway Traffic Safety Administration (NHTSA, pronounced "NITZ-ah") is an agency of the U.S. federal government, part of the Department of Transportation. It describes its mission as "Save lives, prevent injuries, reduce vehicle-related crashes" related to transportation safety in the United States.
 
 As part of its activities, NHTSA is charged with writing and enforcing Federal Motor Vehicle Safety Standards as well as regulations for motor vehicle theft resistance and fuel economy, as part of the Corporate Average Fuel Economy (CAFE) system. FMVSS 209 was the first standard to become effective on March 1, 1967. NHTSA also licenses vehicle manufacturers and importers, allows or blocks the import of vehicles and safety-regulated vehicle parts, administers the vehicle identification number (VIN) system, develops the anthropomorphic dummies used in U.S. safety testing as well as the test protocols themselves, and provides vehicle insurance cost information. The agency has asserted preemptive regulatory authority over greenhouse gas emissions, but this has been disputed by such state regulatory agencies as the California Air Resources Board.
 
+##Disclaimer
+This app was built for educational purposes only, therefore no pertinent information can yet be fetched.
+
+
 ##About the App
 This app should allow user to lookup any automobile, and see history of recalls, theft factors, insurance risks and costs, energy consumption, measurements as well as a coefficient of environmental impact.
 
+##Installation
+- Clone the repo
+- Go to client directory `cd client`
+- Run `npm install`
+- Start `npm start`
+
 #Development:
+
+This app was built in React using Axios to fetch API. Front end: Material UI
 
 ## TODO's
 ###Responsive Design
