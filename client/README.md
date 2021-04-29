@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+#Car Info from NHTSA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###Description:
 
-## Available Scripts
+The National Highway Traffic Safety Administration (NHTSA, pronounced "NITZ-ah") is an agency of the U.S. federal government, part of the Department of Transportation. It describes its mission as "Save lives, prevent injuries, reduce vehicle-related crashes" related to transportation safety in the United States.
 
-In the project directory, you can run:
+As part of its activities, NHTSA is charged with writing and enforcing Federal Motor Vehicle Safety Standards as well as regulations for motor vehicle theft resistance and fuel economy, as part of the Corporate Average Fuel Economy (CAFE) system. FMVSS 209 was the first standard to become effective on March 1, 1967. NHTSA also licenses vehicle manufacturers and importers, allows or blocks the import of vehicles and safety-regulated vehicle parts, administers the vehicle identification number (VIN) system, develops the anthropomorphic dummies used in U.S. safety testing as well as the test protocols themselves, and provides vehicle insurance cost information. The agency has asserted preemptive regulatory authority over greenhouse gas emissions, but this has been disputed by such state regulatory agencies as the California Air Resources Board.
 
-### `yarn start`
+##About the App
+This app should allow user to lookup any automobile, and see history of recalls, theft factors, insurance risks and costs, energy consumption, measurements as well as a coefficient of environmental impact.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#Development:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## TODO's
+###Responsive Design
+- search bar placement varies in relation to header depending window height.
+- search bar overlaps window width below 300px
+- search bar select mode has rectangular shape whereas actual form has border radius.
+- search bar placeholder font is too close to the edge
 
-### `yarn test`
+###Functionalities
+- autocomplete feature doesnt work, however no results are given if the name wasn’t entered properly.
+- search results render cards the equivalent amount of items search criteria contains. Should have only one.
+- the ❎ button does not close anything but it could be used to reset the *state* back to `null`
+- close button needs to be adjusted at the top right corner, occupying 25% of its shape inside the form.
+- loading times while fetching `make` or `model` should displayed as a spinner to let user know that data is taking time to fetch.
+- `see complete list` doesn’t deploy as required by client. A scrool bar implemented to show the enitre model list.
+- code could be refactored using *helper functions* instead of coding inside the jsx.
+- *custom hooks* can be implemented to make code understandable.
+- only one (1) API call would be sufficient to make the app work.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+####Screen captures as of APR 28, 2021
 
-### `yarn build`
+![Screenshot](/screenCaptures/p1.png)
+![Screenshot](/screenCaptures/p2.png)
+![Screenshot](/screenCaptures/p3.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
